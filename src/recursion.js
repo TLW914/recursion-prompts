@@ -7,13 +7,13 @@
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
 var factorial = function (n){
-	if (n < 0) {
+  if (n < 0) {
     return null;
     }
-  	if (n === 0){
+    if (n === 0){
     return 1;
-  	}
-  	return n * factorial(n-1);
+    }
+    return n * factorial(n-1);
 };
 
 // if n > 0
@@ -32,7 +32,7 @@ var factorial = function (n){
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
   if (array.length === 0){
-  	return 0;
+    return 0;
   }
   if (array.length === 1) {
     return array[0];
@@ -78,13 +78,13 @@ var arraySum = function (array) {
 // // };
 var isEven = function(n) {
   if (n === 0){
-  	return true;  //basecase
+    return true;  //basecase
   } else if (n === 1){
-  	return false;  // basecase
+    return false;  // basecase
   } else if (n < 0){
-  	return isEven(-n); // make negative numbers positive.
+    return isEven(-n); // make negative numbers positive.
   } else {
-  	return isEven(n - 2); // subtract n until it equals 1 or 0
+    return isEven(n - 2); // subtract n until it equals 1 or 0
   }
 };
 
@@ -93,11 +93,11 @@ var isEven = function(n) {
 // sumBelow(7); // 21
 var sumBelow = function(n) {
   if(n === 0){
-	return n;
+  return n;
   } else if (n > 0){
-	return (n-1) + sumBelow(n-1);
+  return (n-1) + sumBelow(n-1);
   } else {
-	return (n+1) + sumBelow(n+1);
+  return (n+1) + sumBelow(n+1);
   }
 };
 
@@ -105,19 +105,19 @@ var sumBelow = function(n) {
 // range(2,9); // [3,4,5,6,7,8]  (9,)
 var range = function(x, y) {
   if (x-y === 0 || y-x === 0 || x-y === 1 || y-x === 1){
-  	return [];
+    return [];
   } else if (y - x === 2){
-	return [x + 1];
+  return [x + 1];
   } else if(x - y === 2){
-	return [x - 1];
+  return [x - 1];
   } else if (y-x > 2){
-	var rangeArr = range(x, y - 1);
-	rangeArr.push(y - 1);
-	return rangeArr;
+  var rangeArr = range(x, y - 1);
+  rangeArr.push(y - 1);
+  return rangeArr;
   } else if (x-y >2){
-  	var rangeArr = range(x-1, y);
-	rangeArr.unshift(x-1);
-	return rangeArr;
+    var rangeArr = range(x-1, y);
+  rangeArr.unshift(x-1);
+  return rangeArr;
   }
 };
 
@@ -129,9 +129,9 @@ var range = function(x, y) {
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp){
   if (exp === 0) {
-	return 1;
+  return 1;
   } else if (exp < 0) {
-	return parseFloat((1 / base * exponent(base, exp + 1)).toFixed(5));
+  return parseFloat((1 / base * exponent(base, exp + 1)).toFixed(5));
   }
     return base * exponent(base, exp - 1);
 };
@@ -165,11 +165,47 @@ function reverse (str) {
     }
 };
 
+// // //short version
+
+// // // var palindrome = function(string) {
+// // //   var isPalindrome = false;
+// // //   if (string === string.split("").reverse().join("")){
+// // //     isPalindrome = true;
+// // //   }
+// // //   return isPalindrome;
+// // // };
+
+// // // palindrome("eevee");
+
+// // //long version
+
+// // var palindrome = function(string) {
+// //   var isPalindrome = false;
+// //   var palArr = [];
+// //   for (var i=string.length; i>=0; i--){
+// //     palArr.push(string[i]);
+// //   }
+// //   if (string === palArr.join("")){
+// //     isPalindrome = true;
+// //   }
+// //   return isPalindrome;
+// // }
+
+// // palindrome("eevee")
+
 
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
-};
+  string = string.toLowerCase(string);
+  if (string.length === 0){
+    return true;
+  } else if(string[0] !== string[string.length-1]){
+    return false;
+  } else{
+    return palindrome(string.slice(1, string.length-1));
+  }
+}
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
@@ -177,6 +213,19 @@ var palindrome = function(string) {
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
+    if (y === 0) {
+      return NaN;
+    }
+    if (x < 0) {
+      return -modulo(-x,  y);
+    }
+    if (y < 0) {
+      return  modulo( x, -y);
+    }
+    if (x < y) {
+      return  x;
+    }
+    return modulo(x - y, y);
 };
 
 // 12. Write a function that multiplies two numbers without using the * operator or
