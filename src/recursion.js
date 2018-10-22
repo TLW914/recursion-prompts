@@ -1,3 +1,4 @@
+
 /* jshint esversion: 6 */
 
 // Solve the following prompts using recursion.
@@ -132,8 +133,10 @@ var exponent = function(base, exp){
   return 1;
   } else if (exp < 0) {
   return parseFloat((1 / base * exponent(base, exp + 1)).toFixed(5));
+  } else if (exp === 1){
+    return base;
   }
-    return base * exponent(base, exp - 1);
+  return base * exponent(base, exp - 1);
 };
 
 // 8. Determine if a number is a power of two.
